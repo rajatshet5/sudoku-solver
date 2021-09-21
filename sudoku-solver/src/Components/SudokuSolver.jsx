@@ -103,7 +103,7 @@ export function SudokuSolver() {
     }
     guess(i, j).then(() => {
       setRunning(false);
-      console.log("success", mat);
+      // console.log("success", mat);
       setSolved(true);
     })
   }
@@ -248,7 +248,7 @@ export function SudokuSolver() {
     let newData = data.split("\n").map(function(rows) {
       return rows.trim().split("").map(Number);
     });
-    console.log(data, newData);
+    // console.log(data, newData);
     if (newData.length !== 9) {
       invalid = true;
       setAlertMsg("Invalid Input: More than 9 rows present");
@@ -294,7 +294,7 @@ export function SudokuSolver() {
         for (let key in freq) {
           if (freq[key] > 1 && key !== "0") {
             invalid = true;
-            console.log(newData, freq, key);
+            // console.log(newData, freq, key);
             setAlertMsg("Invalid Input: Duplicates Found (in one or more rows)");
             setOpen(true);
             // alert("Invalid Input: Duplicates Found (in one or more rows)");
@@ -318,7 +318,7 @@ export function SudokuSolver() {
         }
         for (let key in freq) {
           if (freq[key] > 1 && key !== "0") {
-            console.log(newData, freq, key);
+            // console.log(newData, freq, key);
             invalid = true;
             setAlertMsg("Invalid Input: Duplicates Found (in one or more columns)");
             setOpen(true);
@@ -352,7 +352,7 @@ export function SudokuSolver() {
           }
           for (let key in freq) {
           if (freq[key] > 1 && key !== "0") {
-            console.log(newData, freq, key);
+            // console.log(newData, freq, key);
             invalid = true;
             setAlertMsg("Invalid Input: Duplicates Found (in one or more 3 x 3 Grids)");
             setOpen(true);
@@ -368,14 +368,15 @@ export function SudokuSolver() {
       // console.log(newData);
       setMat(newData);
       setChanged(!changed);
+      setSolved(false);
     }
   }
-  const handleConstraints = (e) => {
-    console.log(inpRef.current.value.length);
-  }
-  const handleClick = () => {
-    setOpen(true);
-  };
+  // const handleConstraints = (e) => {
+  //   // console.log(inpRef.current.value.length);
+  // }
+  // const handleClick = () => {
+  //   setOpen(true);
+  // };
   const handleClose = () => {
     setOpen(false);
   };
@@ -384,7 +385,7 @@ export function SudokuSolver() {
     <Box className={classes.container}>
     <Box className={classes.gridContainer}>
         <SudokuGrid fixedBoxes={fixedBoxes} running={running} solved={solved} mat={mat} />
-          {running ? <p style={{height:"15px", display:"flex", alignItems:"center", justifyContent:"center", borderRadius:"3px", width:"39px", fontSize:"15px", margin:"0px", cursor:"pointer", padding:"5px", backgroundColor:"#92918b", color:"white"}} onClick={() => window.location.href = "/"}>Stop</p> : null}
+          {running ? <p style={{height:"15px", display:"flex", alignItems:"center", justifyContent:"center", borderRadius:"3px", width:"39px", fontSize:"15px", margin:"0px", cursor:"pointer", padding:"5px", backgroundColor:"#ff0800", color:"white"}} onClick={() => window.location.href = "/"}>Stop</p> : null}
     </Box>
     <Box className={classes.customize}>
     {/* <h1>{speed.current}</h1> */}
@@ -424,10 +425,10 @@ export function SudokuSolver() {
           />
           </div>
           <p style={{marginBottom:"3px",color:"rgb(29, 29, 31)"}}>Manual Input</p>
-          <textarea onChange={ handleConstraints } ref={inpRef} style={{width:"150px", marginTop:0, height:"250px", fontSize:"23px"}}>
+          <textarea ref={inpRef} style={{width:"150px", marginTop:0, height:"250px", fontSize:"23px"}}>
 
           </textarea>
-          <Button disabled={running} style={{margin:"5px 30px", marginBottom:"39px", color:"white", backgroundColor:"rgb(89, 89, 92)"}} variant="contained" onClick={handleManualInput}>Load</Button>
+          <Button disabled={running} style={{margin:"5px 30px", marginBottom:"39px", color:"white"}} variant="contained" color="primary" onClick={handleManualInput}>Load</Button>
         </div>
       </Box>
     </Box>

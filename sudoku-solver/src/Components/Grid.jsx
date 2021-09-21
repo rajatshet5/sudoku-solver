@@ -6,10 +6,10 @@ import styled from "styled-components";
 
 export function SudokuGrid({ mat, solved, running, fixedBoxes }) {
     const [a, setA] = useState([]);
-    console.log(fixedBoxes);
+    // console.log(fixedBoxes);
     useEffect(() => {
         const filtered = fixedBoxes.map((item) => (item[0]*10 + item[1]))
-        console.log(filtered);
+        // console.log(filtered);
         setA(filtered);
     }, [fixedBoxes])
     const useStyles = makeStyles({
