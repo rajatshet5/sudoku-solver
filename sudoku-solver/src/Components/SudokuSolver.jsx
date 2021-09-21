@@ -4,9 +4,15 @@ import { useEffect, useState } from 'react';
 import { SudokuGrid } from './Grid';
 import { makeStyles } from "@material-ui/core";
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
+import { Snackbar } from "@material-ui/core";
+// import { Alert } from "@material-ui/core";
+
+
 
 
 export function SudokuSolver() {
+  const [open, setOpen] = useState(false);
+  const [alertMsg, setAlertMsg] = useState("");
   const [running, setRunning] = useState(false);
   const [solved, setSolved] = useState(false);
   const [fixedBoxes, setFixedBoxes] = useState([]);
@@ -245,12 +251,16 @@ export function SudokuSolver() {
     console.log(data, newData);
     if (newData.length !== 9) {
       invalid = true;
-      alert("Invalid Input: More than 9 rows present");
+      setAlertMsg("Invalid Input: More than 9 rows present");
+      setOpen(true);
+      // alert("Invalid Input: More than 9 rows present");
     } else {
       for (let i = 0; i < newData.length; i++) {
         if (newData[i].length !== 9) {
           invalid = true;
-          alert("Invalid Input: More than 9 columns present");
+          setAlertMsg("Invalid Input: More than 9 columns present");
+          setOpen(true);
+          // alert("Invalid Input: More than 9 columns present");
           break;
         }
       }
@@ -259,7 +269,9 @@ export function SudokuSolver() {
           for (let j = 0; j < 9; j++) {
             if (!(newData[i][j] <= 9 && newData[i][j] >= 0)) {
               invalid = true;
-              alert("Invalid Inuput: Each box should contain a number between 0 and 9");
+              setAlertMsg("Invalid Inuput: Each box should contain a number between 0 and 9");
+              setOpen(true);
+              // alert("Invalid Inuput: Each box should contain a number between 0 and 9");
               break;
             }
           }
@@ -283,7 +295,9 @@ export function SudokuSolver() {
           if (freq[key] > 1 && key !== "0") {
             invalid = true;
             console.log(newData, freq, key);
-            alert("Invalid Input: Duplicates Found (in one or more rows)");
+            setAlertMsg("Invalid Input: Duplicates Found (in one or more rows)");
+            setOpen(true);
+            // alert("Invalid Input: Duplicates Found (in one or more rows)");
             break;
           }
         }
@@ -306,7 +320,9 @@ export function SudokuSolver() {
           if (freq[key] > 1 && key !== "0") {
             console.log(newData, freq, key);
             invalid = true;
-            alert("Invalid Input: Duplicates Found (in one or more columns)");
+            setAlertMsg("Invalid Input: Duplicates Found (in one or more columns)");
+            setOpen(true);
+            // alert("Invalid Input: Duplicates Found (in one or more columns)");
             break;
           }
         }
@@ -338,7 +354,9 @@ export function SudokuSolver() {
           if (freq[key] > 1 && key !== "0") {
             console.log(newData, freq, key);
             invalid = true;
-            alert("Invalid Input: Duplicates Found (in one or more 3 x 3 Grids)");
+            setAlertMsg("Invalid Input: Duplicates Found (in one or more 3 x 3 Grids)");
+            setOpen(true);
+            // alert("Invalid Input: Duplicates Found (in one or more 3 x 3 Grids)");
             break;
           }
         }
@@ -354,8 +372,13 @@ export function SudokuSolver() {
   }
   const handleConstraints = (e) => {
     console.log(inpRef.current.value.length);
-
   }
+  const handleClick = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
   return <>
     <Typography style={{ margin: "13px", textAlign: "center", backgroundColor: "cream" }} variant="h4"><p style={{margin:"0px auto", padding:"8px", borderBottom:"1px solid lightgrey", width:"590px" }}>Sudoku Solver</p></Typography>
     <Box className={classes.container}>
@@ -388,6 +411,18 @@ export function SudokuSolver() {
           <Button disabled={running || solved} style={{ width: "180px" }} variant="contained" color="primary" onClick={() => solve(mat)}>Solve</Button>
           </div>
         <div>
+          <div>
+            {/* <Button variant="outlined" onClick={handleClick}>
+            Open success snackbar
+          </Button> */}
+            <Snackbar
+              anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+            open={open}
+            autoHideDuration={5800}
+            onClose={handleClose}
+              message={alertMsg}
+          />
+            </div>
           <textarea onChange={ handleConstraints } ref={inpRef} style={{width:"150px", height:"250px", fontSize:"23px"}}>
 
           </textarea>
