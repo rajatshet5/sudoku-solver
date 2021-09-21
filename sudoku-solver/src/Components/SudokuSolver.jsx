@@ -201,7 +201,7 @@ export function SudokuSolver() {
     //   alignItems: "center",
     // },
     customize: {
-      margin: "130px 0px"
+      margin: "10px 0px"
     }
   })
   const classes = useStyles();
@@ -245,12 +245,12 @@ export function SudokuSolver() {
     console.log(data, newData);
     if (newData.length !== 9) {
       invalid = true;
-      alert("Invalid Input: Length of one (or more) of the rows is not equal to 9");
+      alert("Invalid Input: More than 9 rows present");
     } else {
       for (let i = 0; i < newData.length; i++) {
         if (newData[i].length !== 9) {
           invalid = true;
-          alert("Invalid Input: Length of one (or more) of the columns is not equal to 9");
+          alert("Invalid Input: More than 9 columns present");
           break;
         }
       }
@@ -312,6 +312,39 @@ export function SudokuSolver() {
         }
       }
     }
+    if (!invalid) {
+      for (let i = 0; i <= 7; i += 3) {
+        if (invalid) {
+          break;
+        }
+        for (let j = 0; j <= 7; j += 3) {
+          let freq = {};
+          if (invalid) {
+            break;
+          }
+          for (let k = i; k < i + 3; k++) {
+            if (invalid) {
+              break;
+            }
+            for (let l = j; l < j + 3; l++) {
+              if (freq[newData[k][l]] === undefined) {
+                freq[newData[k][l]] = 1;
+              } else {
+                freq[newData[k][l]]++;
+              }
+            }
+          }
+          for (let key in freq) {
+          if (freq[key] > 1 && key !== "0") {
+            console.log(newData, freq, key);
+            invalid = true;
+            alert("Invalid Input: Duplicates Found (in one or more 3 x 3 Grids)");
+            break;
+          }
+        }
+        }
+      }
+    }
 
     if (!invalid) {
       // console.log(newData);
@@ -328,7 +361,7 @@ export function SudokuSolver() {
     <Box className={classes.container}>
     <Box className={classes.gridContainer}>
         <SudokuGrid fixedBoxes={fixedBoxes} running={running} solved={solved} mat={mat} />
-          {/* {running ? <p style={{height:"29px", fontSize:"15px", margin:"0px", cursor:"pointer"}} onClick={() => window.location.href = "/"}>Stop</p> : null} */}
+          {running ? <p style={{height:"15px", display:"flex", alignItems:"center", justifyContent:"center", borderRadius:"3px", width:"39px", fontSize:"15px", margin:"0px", cursor:"pointer", padding:"5px", backgroundColor:"#92918b", color:"white"}} onClick={() => window.location.href = "/"}>Stop</p> : null}
     </Box>
     <Box className={classes.customize}>
     {/* <h1>{speed.current}</h1> */}
@@ -358,7 +391,7 @@ export function SudokuSolver() {
           <textarea onChange={ handleConstraints } ref={inpRef} style={{width:"150px", height:"250px", fontSize:"23px"}}>
 
           </textarea>
-          <Button onClick={handleManualInput}>Load</Button>
+          <Button disabled={running} style={{margin:"5px 30px", marginBottom:"39px"}} variant="contained" color="green" onClick={handleManualInput}>Load</Button>
         </div>
       </Box>
     </Box>
