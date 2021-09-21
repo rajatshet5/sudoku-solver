@@ -422,11 +422,12 @@ export function SudokuSolver() {
             onClose={handleClose}
               message={alertMsg}
           />
-            </div>
-          <textarea onChange={ handleConstraints } ref={inpRef} style={{width:"150px", height:"250px", fontSize:"23px"}}>
+          </div>
+          <p style={{marginBottom:"3px",color:"rgb(29, 29, 31)"}}>Manual Input</p>
+          <textarea onChange={ handleConstraints } ref={inpRef} style={{width:"150px", marginTop:0, height:"250px", fontSize:"23px"}}>
 
           </textarea>
-          <Button disabled={running} style={{margin:"5px 30px", marginBottom:"39px"}} variant="contained" color="green" onClick={handleManualInput}>Load</Button>
+          <Button disabled={running} style={{margin:"5px 30px", marginBottom:"39px", color:"white", backgroundColor:"rgb(89, 89, 92)"}} variant="contained" onClick={handleManualInput}>Load</Button>
         </div>
       </Box>
     </Box>
