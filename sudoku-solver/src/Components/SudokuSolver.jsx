@@ -21,6 +21,10 @@ export function SudokuSolver() {
       });
   }
   useEffect(() => {
+    inpRef.current.value =
+       `605900003\n200003000\n013008670\n398000465\n000380090\n000000030\n702000046\n460507000\n000006709`;
+  }, []);
+  useEffect(() => {
     handleFixedBoxes();
   }, [changed])
 
@@ -351,7 +355,7 @@ export function SudokuSolver() {
           <Button disabled={running || solved} style={{ width: "180px" }} variant="contained" color="primary" onClick={() => solve(mat)}>Solve</Button>
           </div>
         <div>
-          <textarea onChange={ handleConstraints } rows={10} cols={10} ref={inpRef} style={{width:"280px", height:"250px", fontSize:"23px"}}>
+          <textarea onChange={ handleConstraints } ref={inpRef} style={{width:"150px", height:"250px", fontSize:"23px"}}>
 
           </textarea>
           <Button onClick={handleManualInput}>Load</Button>
