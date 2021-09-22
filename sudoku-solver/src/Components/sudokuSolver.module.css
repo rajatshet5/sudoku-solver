@@ -23,6 +23,11 @@
   }
   .inpTitle {
     margin-left: 5% !important;
+    margin-bottom: 8px;
+  }
+  .speedInfoDiv {
+    width: 78% !important;
+    margin-left: 0px;
   }
 }
 .title {
@@ -34,4 +39,16 @@
 .inpTitle {
   margin-bottom: 3px;
   color: rgb(29, 29, 31);
+}
+.speedInfo {
+  margin-top: 0px;
+  margin-bottom: 59px;
+  font-size: 10px;
+  color: grey;
+}
+.speedInfoDiv {
+  margin-left: 110px;
+  display: flex;
+  justify-content: space-between;
+  width: 460px;
 }

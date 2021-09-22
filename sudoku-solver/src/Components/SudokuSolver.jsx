@@ -400,9 +400,9 @@ export function SudokuSolver() {
       onChange={handleChange}
           />
           </div>
-          <div style={{marginLeft:"110px",display:"flex",justifyContent:"space-between", width:"460px"}}>
-            <p style={{marginTop:"0px", marginBottom:"59px", fontSize:"10px", color:"grey"}}>Speed: Max</p>
-            <p style={{marginTop:"0px", marginBottom:"59px", fontSize:"10px", color:"grey"}}>Speed: Min</p>
+          <div className={styles.speedInfoDiv} >
+            <p className={styles.speedInfo} >Speed: Max</p>
+            <p className={styles.speedInfo} >Speed: Min</p>
         </div>
         <div style={{width:"100%", textDecoration:"none",display:"flex", justifyContent:"space-evenly"}}>
         <Button disabled={running} style={{fontSize:"13px", textTransform:"none"}} variant="outlined" color="primary" onClick={loadEasy}>Load Sudoku: Easy</Button>
