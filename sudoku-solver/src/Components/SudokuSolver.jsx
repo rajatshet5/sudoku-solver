@@ -425,8 +425,8 @@ export function SudokuSolver() {
               message={alertMsg}
           />
           </div>
-          <p style={{marginBottom:"3px",color:"rgb(29, 29, 31)"}}>Manual Input</p>
-          <textarea ref={inpRef} style={{width:"150px", marginTop:0, height:"250px", fontSize:"23px"}}>
+          <p className={styles.inpTitle}>Manual Input</p>
+          <textarea className={styles.inpBox} ref={inpRef} style={{width:"150px", marginTop:0, height:"250px", fontSize:"23px"}}>
 
           </textarea>
           <Button disabled={running} style={{margin:"5px 30px", marginBottom:"39px", color:"white"}} variant="contained" color="primary" onClick={handleManualInput}>Load</Button>

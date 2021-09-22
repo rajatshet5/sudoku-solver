@@ -13,9 +13,16 @@
     height: 300px;
     padding-top: 600px;
     margin-bottom: 190px;
+    padding-left: 5%;
   }
   .title {
     width: 100% !important;
+  }
+  .inpBox {
+    margin-left: 5% !important;
+  }
+  .inpTitle {
+    margin-left: 5% !important;
   }
 }
 .title {
@@ -23,4 +30,8 @@
   padding: 8px;
   border-bottom: 1px solid lightgrey;
   width: 590px;
+}
+.inpTitle {
+  margin-bottom: 3px;
+  color: rgb(29, 29, 31);
 }
