@@ -5,6 +5,7 @@ import { SudokuGrid } from './Grid';
 import { makeStyles } from "@material-ui/core";
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import { Snackbar } from "@material-ui/core";
+import styles from "./sudokuSolver.module.css";
 // import { Alert } from "@material-ui/core";
 
 
@@ -381,9 +382,9 @@ export function SudokuSolver() {
     setOpen(false);
   };
   return <>
-    <Typography style={{ margin: "13px", textAlign: "center", backgroundColor: "cream" }} variant="h4"><p style={{margin:"0px auto", padding:"8px", borderBottom:"1px solid lightgrey", width:"590px" }}>Sudoku Solver</p></Typography>
-    <Box className={classes.container}>
-    <Box className={classes.gridContainer}>
+    <Typography style={{ margin: "13px", textAlign: "center", backgroundColor: "cream" }} variant="h4"><p className={styles.title} >Sudoku Solver</p></Typography>
+    <Box className={styles.container}>
+    <Box className={styles.gridContainer}>
         <SudokuGrid fixedBoxes={fixedBoxes} running={running} solved={solved} mat={mat} />
           {running ? <p style={{height:"15px", display:"flex", alignItems:"center", justifyContent:"center", borderRadius:"3px", width:"39px", fontSize:"15px", margin:"0px", cursor:"pointer", padding:"5px", backgroundColor:"#ff0800", color:"white"}} onClick={() => window.location.href = "/"}>Stop</p> : null}
     </Box>
