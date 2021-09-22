@@ -386,7 +386,7 @@ export function SudokuSolver() {
     <Box className={styles.container}>
     <Box className={styles.gridContainer}>
         <SudokuGrid fixedBoxes={fixedBoxes} running={running} solved={solved} mat={mat} />
-          {running ? <p style={{height:"15px", display:"flex", alignItems:"center", justifyContent:"center", borderRadius:"3px", width:"39px", fontSize:"15px", margin:"0px", cursor:"pointer", padding:"5px", backgroundColor:"#ff0800", color:"white"}} onClick={() => window.location.href = "/"}>Stop</p> : null}
+          {running ? <p style={{height:"13px", display:"flex", alignItems:"center", justifyContent:"center", borderRadius:"3px", width:"30px", fontSize:"11px", margin:"0px", cursor:"pointer", padding:"3px", backgroundColor:"#da0700", color:"white"}} onClick={() => window.location.href = "/"}>Stop</p> : null}
     </Box>
     <Box className={classes.customize}>
     {/* <h1>{speed.current}</h1> */}
