@@ -1,6 +1,6 @@
 # Sudoku Solver
 Solve any Sudoku problem.
-CLick on Solve to start solving the problem.
+Click on Solve to start solving the problem.
 The speed of the algorithm can also be adjusted.
 
 https://sudoku-solver-rajatshet.vercel.app/
