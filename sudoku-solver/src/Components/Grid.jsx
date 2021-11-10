@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import styled from "styled-components";
 
 
-export function SudokuGrid({ mat, solved, running, fixedBoxes }) {
+export function SudokuGrid({ mat, solved, running, fixedBoxes, invalidInput }) {
     const [a, setA] = useState([]);
     // console.log(fixedBoxes);
     useEffect(() => {
@@ -14,7 +14,7 @@ export function SudokuGrid({ mat, solved, running, fixedBoxes }) {
     }, [fixedBoxes])
     const useStyles = makeStyles({
     box: {
-        border: "1px solid lightgrey",
+            border: invalidInput? "1px solid red": "1px solid lightgrey",
         width: "50px",
         height: "46px",
         display: "flex",

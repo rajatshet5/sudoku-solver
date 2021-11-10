@@ -18,6 +18,7 @@ export function SudokuSolver() {
   const [solved, setSolved] = useState(false);
   const [fixedBoxes, setFixedBoxes] = useState([]);
   const [changed, setChanged] = useState(false);
+  const [invalidInput, setInvalidInput] = useState(false);
   const speed = useRef(0);
   // console.log("rerendered")
   const delay = (t) => {
@@ -88,6 +89,7 @@ export function SudokuSolver() {
     if (running) {
       return;
     }
+    setInvalidInput(false);
     setSolved(false);
     var found = false;
     for (var i = 0; i < 9; i++) {
@@ -103,9 +105,26 @@ export function SudokuSolver() {
       }
     }
     guess(i, j).then(() => {
+      let invInp = false;
       setRunning(false);
-      // console.log("success", mat);
-      setSolved(true);
+      for (let e = 0; e < 9; e++) {
+        if (invInp) {
+          break;
+        }
+        for (let g = 0; g < 9; g++) {
+          if (mat[e][g] == 0) {
+            invInp = true;
+            break;
+          }
+        }
+      }
+      if (invInp) {
+        setInvalidInput(true);
+        setAlertMsg("Invalid Sudoku Input");
+        setOpen(true);
+      } else {
+        setSolved(true);
+      }
     })
   }
   
@@ -217,16 +236,19 @@ export function SudokuSolver() {
     speed.current = (newValue * 15);
   }
   const loadEasy = () => {
+    setInvalidInput(false);
     setSolved(false);
     setMat(toMat(inpArr[1]))
     setChanged(!changed);
   }
   const loadMedium = () => {
+    setInvalidInput(false);
     setSolved(false);
     setMat(toMat(inpArr[2]))
     setChanged(!changed);
   }
   const loadDifficult = () => {
+    setInvalidInput(false);
     setSolved(false);
     setMat(toMat(inpArr[0]))
     setChanged(!changed);
@@ -244,6 +266,7 @@ export function SudokuSolver() {
   }
   const inpRef = useRef();
   const handleManualInput = () => {
+    setInvalidInput(false);
     let invalid = false;
     const data = inpRef.current.value;
     let newData = data.split("\n").map(function(rows) {
@@ -270,7 +293,7 @@ export function SudokuSolver() {
           for (let j = 0; j < 9; j++) {
             if (!(newData[i][j] <= 9 && newData[i][j] >= 0)) {
               invalid = true;
-              setAlertMsg("Invalid Inuput: Each box should contain a number between 0 and 9");
+              setAlertMsg("Invalid Input: Each box should contain a number between 0 and 9");
               setOpen(true);
               // alert("Invalid Inuput: Each box should contain a number between 0 and 9");
               break;
@@ -385,7 +408,7 @@ export function SudokuSolver() {
     <Typography style={{ margin: "13px", textAlign: "center", backgroundColor: "cream" }} variant="h4"><p className={styles.title} >Sudoku Solver</p></Typography>
     <Box className={styles.container}>
     <Box className={styles.gridContainer}>
-        <SudokuGrid fixedBoxes={fixedBoxes} running={running} solved={solved} mat={mat} />
+        <SudokuGrid fixedBoxes={fixedBoxes} running={running} invalidInput={invalidInput} solved={solved} mat={mat} />
           {running ? <p style={{height:"13px", display:"flex", alignItems:"center", justifyContent:"center", borderRadius:"3px", width:"30px", fontSize:"11px", marginLeft:"19px", cursor:"pointer", padding:"3px", backgroundColor:"#da0700", color:"white"}} onClick={() => window.location.href = "/"}>Stop</p> : null}
     </Box>
     <Box className={classes.customize}>
