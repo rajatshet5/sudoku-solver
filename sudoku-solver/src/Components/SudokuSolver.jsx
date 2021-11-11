@@ -275,14 +275,14 @@ export function SudokuSolver() {
     // console.log(data, newData);
     if (newData.length !== 9) {
       invalid = true;
-      setAlertMsg("Invalid Input: More than 9 rows present");
+      setAlertMsg("Invalid Input: A total of 9 rows should be present in every column");
       setOpen(true);
       // alert("Invalid Input: More than 9 rows present");
     } else {
       for (let i = 0; i < newData.length; i++) {
         if (newData[i].length !== 9) {
           invalid = true;
-          setAlertMsg("Invalid Input: More than 9 columns present");
+          setAlertMsg("Invalid Input: A total of 9 columns should be present in every row");
           setOpen(true);
           // alert("Invalid Input: More than 9 columns present");
           break;
